@@ -1,0 +1,13 @@
+.layout-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#layout main {
+    padding-top: 30px;
+    background-color: #FFF;
+    width: 100%;
+    flex: 82%;
+    max-width: 82%;
+    margin-left: 18%;
+}
