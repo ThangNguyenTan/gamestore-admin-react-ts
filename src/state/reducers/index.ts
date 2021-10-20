@@ -10,6 +10,10 @@ import findFeaturesReducer from './findFeaturesReducer'
 import createFeatureReducer from './createFeatureReducer'
 import getFeatureReducer from './getFeatureReducer'
 import updateFeatureReducer from './updateFeatureReducer'
+import findDevelopersReducer from './findDevelopersReducer'
+import createDeveloperReducer from './createDeveloperReducer'
+import getDeveloperReducer from './getDeveloperReducer'
+import updateDeveloperReducer from './updateDeveloperReducer'
 
 const reducers = combineReducers({
     bankReducer,
@@ -23,6 +27,10 @@ const reducers = combineReducers({
     createFeatureReducer,
     getFeatureReducer,
     updateFeatureReducer,
+    findDevelopersReducer,
+    createDeveloperReducer,
+    getDeveloperReducer,
+    updateDeveloperReducer,
 })
 
 export default reducers

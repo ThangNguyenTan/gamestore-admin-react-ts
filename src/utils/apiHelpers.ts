@@ -11,3 +11,7 @@ export const singleGenreURL = (id: number | string): string =>
 export const mainFeaturesURL = (): string => `${MAIN_API_URL}/features`
 export const singleFeatureURL = (id: number | string): string =>
     `${MAIN_API_URL}/features/${id}`
+
+export const mainDevelopersURL = (): string => `${MAIN_API_URL}/developers`
+export const singleDeveloperURL = (id: number | string): string =>
+    `${MAIN_API_URL}/developers/${id}`
