@@ -7,3 +7,7 @@ export const singleTodoURL = (id: number | string): string =>
 export const mainGenresURL = (): string => `${MAIN_API_URL}/genres`
 export const singleGenreURL = (id: number | string): string =>
     `${MAIN_API_URL}/genres/${id}`
+
+export const mainFeaturesURL = (): string => `${MAIN_API_URL}/features`
+export const singleFeatureURL = (id: number | string): string =>
+    `${MAIN_API_URL}/features/${id}`

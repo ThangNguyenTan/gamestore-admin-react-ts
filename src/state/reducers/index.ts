@@ -6,6 +6,10 @@ import findGenresReducer from './findGenresReducer'
 import createGenreReducer from './createGenreReducer'
 import getGenreReducer from './getGenreReducer'
 import updateGenreReducer from './updateGenreReducer'
+import findFeaturesReducer from './findFeaturesReducer'
+import createFeatureReducer from './createFeatureReducer'
+import getFeatureReducer from './getFeatureReducer'
+import updateFeatureReducer from './updateFeatureReducer'
 
 const reducers = combineReducers({
     bankReducer,
@@ -15,6 +19,10 @@ const reducers = combineReducers({
     createGenreReducer,
     getGenreReducer,
     updateGenreReducer,
+    findFeaturesReducer,
+    createFeatureReducer,
+    getFeatureReducer,
+    updateFeatureReducer,
 })
 
 export default reducers

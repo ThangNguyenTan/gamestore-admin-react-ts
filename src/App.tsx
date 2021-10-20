@@ -6,7 +6,7 @@ import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { actionCreators } from './state'
 import { RootState } from './state/reducers/index'
-import { GenrePage, TodoPage } from './pages'
+import { GenrePage, TodoPage, FeaturePage } from './pages'
 import { Layout } from './components'
 
 const App: React.FC = () => {
@@ -24,6 +24,7 @@ const App: React.FC = () => {
                 <Layout>
                     <Switch>
                         <Route exact path="/genres" component={GenrePage} />
+                        <Route exact path="/features" component={FeaturePage} />
                         <Route
                             exact
                             path="/"

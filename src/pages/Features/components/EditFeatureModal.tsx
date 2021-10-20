@@ -4,38 +4,38 @@ import { useDispatch, useSelector } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { RootState } from '../../../state/reducers'
 import { actionCreators } from '../../../state'
-import { IGenre } from '../../../interfaces'
+import { IFeature } from '../../../interfaces'
 
 type Props = {
-    genreId: number
+    featureId: number
     isAppear: boolean
     setEditModalAppear: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const UpdateGenreModal: FC<Props> = (props) => {
+const UpdateFeatureModal: FC<Props> = (props) => {
     const dispatch = useDispatch()
 
-    const { isAppear, setEditModalAppear, genreId } = props
+    const { isAppear, setEditModalAppear, featureId } = props
 
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const { loading, error } = useSelector(
-        (state: RootState) => state.updateGenreReducer
+        (state: RootState) => state.updateFeatureReducer
     )
     const {
-        genre,
-        loading: getGenreLoading,
-        error: getGenreError,
-    } = useSelector((state: RootState) => state.getGenreReducer)
+        feature,
+        loading: getFeatureLoading,
+        error: getFeatureError,
+    } = useSelector((state: RootState) => state.getFeatureReducer)
 
-    const { updateGenre, getGenre } = bindActionCreators(
+    const { updateFeature, getFeature } = bindActionCreators(
         actionCreators,
         dispatch
     )
 
     useEffect(() => {
-        getGenre(genreId)
-    }, [genreId])
+        getFeature(featureId)
+    }, [featureId])
 
     useEffect(() => {
         if (isSubmitted) {
@@ -43,7 +43,7 @@ const UpdateGenreModal: FC<Props> = (props) => {
                 if (error) {
                     message.error(error)
                 } else {
-                    message.success('Updated a genre')
+                    message.success('Updated a feature')
                 }
                 setIsSubmitted(false)
             }
@@ -54,22 +54,23 @@ const UpdateGenreModal: FC<Props> = (props) => {
         setEditModalAppear(false)
     }
 
-    const onFinish = (values: IGenre): void => {
-        updateGenre({
-            id: genreId,
+    const onFinish = (values: IFeature): void => {
+        updateFeature({
+            id: featureId,
             ...values,
         })
+        setIsSubmitted(true)
     }
 
-    if (getGenreError) {
-        message.error(getGenreError)
+    if (getFeatureError) {
+        message.error(getFeatureError)
         return <></>
     }
 
     return (
         <>
             <Modal
-                title="Update Genre Modal"
+                title="Update Feature Modal"
                 visible={isAppear}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
@@ -78,27 +79,27 @@ const UpdateGenreModal: FC<Props> = (props) => {
                 ]}
             >
                 {error && <Alert message={error} type="error" closable />}
-                {!getGenreLoading ? (
+                {!getFeatureLoading ? (
                     <Form
-                        name="create-genre-form"
+                        name="create-feature-form"
                         onFinish={onFinish}
                         autoComplete="off"
                         layout="vertical"
-                        initialValues={genre!}
+                        initialValues={feature!}
                     >
                         <Form.Item
-                            label="Genre Name"
-                            name="genreName"
+                            label="Feature Name"
+                            name="featureName"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input the genre name!',
+                                    message: 'Please input the feature name!',
                                 },
                             ]}
                         >
                             <Input
-                                placeholder="Genre Name"
-                                disabled={loading || getGenreLoading}
+                                placeholder="Feature Name"
+                                disabled={loading || getFeatureLoading}
                             />
                         </Form.Item>
 
@@ -107,7 +108,7 @@ const UpdateGenreModal: FC<Props> = (props) => {
                                 type="primary"
                                 htmlType="submit"
                                 block
-                                loading={loading || getGenreLoading}
+                                loading={loading || getFeatureLoading}
                             >
                                 Save
                             </Button>
@@ -121,4 +122,4 @@ const UpdateGenreModal: FC<Props> = (props) => {
     )
 }
 
-export default UpdateGenreModal
+export default UpdateFeatureModal
