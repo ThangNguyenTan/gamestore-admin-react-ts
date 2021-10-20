@@ -36,3 +36,12 @@ export type IDeveloper = {
 }
 
 export type IDeveloperList = IDeveloper[]
+
+export type IPublisher = {
+    id?: number
+    publisherName: string
+    createdAt?: string
+    updatedAt?: string
+}
+
+export type IPublisherList = IPublisher[]
