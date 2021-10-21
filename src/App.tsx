@@ -12,6 +12,7 @@ import {
     FeaturePage,
     DeveloperPage,
     PublisherPage,
+    UserPage,
 } from './pages'
 import { Layout } from './components'
 
@@ -29,6 +30,7 @@ const App: React.FC = () => {
             <Router>
                 <Layout>
                     <Switch>
+                        <Route exact path="/users" component={UserPage} />
                         <Route
                             exact
                             path="/developers"

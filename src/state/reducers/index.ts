@@ -18,6 +18,7 @@ import findPublishersReducer from './findPublishersReducer'
 import createPublisherReducer from './createPublisherReducer'
 import getPublisherReducer from './getPublisherReducer'
 import updatePublisherReducer from './updatePublisherReducer'
+import findUsersReducer from './findUsersReducer'
 
 const reducers = combineReducers({
     bankReducer,
@@ -39,6 +40,7 @@ const reducers = combineReducers({
     createPublisherReducer,
     getPublisherReducer,
     updatePublisherReducer,
+    findUsersReducer,
 })
 
 export default reducers
