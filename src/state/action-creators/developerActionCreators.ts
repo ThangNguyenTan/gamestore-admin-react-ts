@@ -55,7 +55,7 @@ export const getDeveloper = (id: string | number) => {
     }
 }
 
-export const createDeveloper = (genreName: string) => {
+export const createDeveloper = (developerName: string) => {
     return async (dispatch: Dispatch<DeveloperAction>): Promise<void> => {
         dispatch({
             type: DeveloperActionType.CREATE_DEVELOPER_REQUEST,
@@ -65,7 +65,7 @@ export const createDeveloper = (genreName: string) => {
             const res: AxiosResponse<IDeveloper> = await axios.post(
                 `${mainDevelopersURL()}`,
                 {
-                    genreName,
+                    developerName,
                 }
             )
             dispatch({

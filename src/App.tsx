@@ -13,6 +13,10 @@ import {
     DeveloperPage,
     PublisherPage,
     UserPage,
+    GamePage,
+    AddGamePage,
+    EditGamePage,
+    GameDetailsPage,
 } from './pages'
 import { Layout } from './components'
 
@@ -30,6 +34,22 @@ const App: React.FC = () => {
             <Router>
                 <Layout>
                     <Switch>
+                        <Route exact path="/games" component={GamePage} />
+                        <Route
+                            exact
+                            path="/games/create"
+                            component={AddGamePage}
+                        />
+                        <Route
+                            exact
+                            path="/games/update/:gameId"
+                            component={EditGamePage}
+                        />
+                        <Route
+                            exact
+                            path="/games/details/:gameId"
+                            component={GameDetailsPage}
+                        />
                         <Route exact path="/users" component={UserPage} />
                         <Route
                             exact

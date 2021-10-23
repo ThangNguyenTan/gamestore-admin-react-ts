@@ -19,6 +19,10 @@ import createPublisherReducer from './createPublisherReducer'
 import getPublisherReducer from './getPublisherReducer'
 import updatePublisherReducer from './updatePublisherReducer'
 import findUsersReducer from './findUsersReducer'
+import findGamesReducer from './findGamesReducer'
+import createGameReducer from './createGameReducer'
+import getGameReducer from './getGameReducer'
+import updateGameReducer from './updateGameReducer'
 
 const reducers = combineReducers({
     bankReducer,
@@ -41,6 +45,10 @@ const reducers = combineReducers({
     getPublisherReducer,
     updatePublisherReducer,
     findUsersReducer,
+    findGamesReducer,
+    createGameReducer,
+    getGameReducer,
+    updateGameReducer,
 })
 
 export default reducers

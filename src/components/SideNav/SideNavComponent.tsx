@@ -22,7 +22,7 @@ const SideNavComponent: FC = () => {
                         </Link>
                     </li>
                     <li className="side-nav__item">
-                        <Link to="/" className="side-nav__link">
+                        <Link to="/games" className="side-nav__link">
                             <i className="fas fa-chart-line" />
                             Games
                         </Link>

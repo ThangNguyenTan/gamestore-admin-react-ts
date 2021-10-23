@@ -23,3 +23,7 @@ export const singlePublisherURL = (id: number | string): string =>
 export const mainUsersURL = (): string => `${MAIN_API_URL}/users`
 export const singleUserURL = (id: number | string): string =>
     `${MAIN_API_URL}/users/${id}`
+
+export const mainGamesURL = (): string => `${MAIN_API_URL}/games`
+export const singleGameURL = (id: number | string): string =>
+    `${MAIN_API_URL}/games/${id}`
