@@ -1,3 +1,8 @@
+export type IUserSignIn = {
+    email: string
+    password: string
+}
+
 export type IGame = {
     id?: number
     gameName: string

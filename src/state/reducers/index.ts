@@ -23,8 +23,10 @@ import findGamesReducer from './findGamesReducer'
 import createGameReducer from './createGameReducer'
 import getGameReducer from './getGameReducer'
 import updateGameReducer from './updateGameReducer'
+import authReducer from './authReducer'
 
 const reducers = combineReducers({
+    authReducer,
     bankReducer,
     findTodosReducer,
     createTodoReducer,

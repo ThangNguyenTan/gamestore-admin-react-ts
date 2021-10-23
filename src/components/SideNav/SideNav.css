@@ -11,7 +11,7 @@
 
 .side-nav__logo {
     text-align: center;
-    color: #FFF;
+    color: #fff;
     margin-bottom: 30px;
 }
 
@@ -25,12 +25,12 @@
     padding-left: 30px;
     display: inline-block;
     border-bottom: 1px solid rgb(133, 133, 133);
-    color: #FFF;
+    color: #fff;
 }
 
 .side-nav__link:hover {
     background-color: #2a2a2a;
-    color: #FFF;
+    color: #fff;
 }
 
 .side-nav__link.active {
@@ -39,5 +39,13 @@
 
 .side-nav__link i {
     margin-right: 30px;
-    color: #FFF;
+    color: #fff;
+    font-size: 1.2rem;
 }
+
+.side-nav__item:last-child .side-nav__link:hover,
+.side-nav__item:last-child .side-nav__link:hover i {
+    color: red;
+    transition: all 0.3s ease;
+}
+

@@ -32,13 +32,8 @@ const GameDetailsPage: FC = () => {
     }
 
     const renderGameDetails = (): JSX.Element => {
-        if (loading) {
+        if (loading || !game) {
             return <h2>Loading...</h2>
-        }
-
-        if (!game) {
-            history.push('/games')
-            return <></>
         }
 
         const {
@@ -59,16 +54,20 @@ const GameDetailsPage: FC = () => {
                     {gameName}
                 </Descriptions.Item>
                 <Descriptions.Item label="Meta Data" span={3}>
-                    <Tag color="magenta">Genre: {GenreInstance.genreName}</Tag>
-                    <Tag color="green">
-                        Feature: {FeatureInstance.featureName}
-                    </Tag>
-                    <Tag color="blue">
-                        Developer: {DeveloperInstance.developerName}
-                    </Tag>
-                    <Tag color="gold">
-                        Publisher: {PublisherInstance.publisherName}
-                    </Tag>
+                    <ul>
+                        <li>
+                            <b>Genre:</b> {GenreInstance.genreName}
+                        </li>
+                        <li>
+                            <b>Feature:</b> {FeatureInstance.featureName}
+                        </li>
+                        <li>
+                            <b>Developer:</b> {DeveloperInstance.developerName}
+                        </li>
+                        <li>
+                            <b>Publisher:</b> {PublisherInstance.publisherName}
+                        </li>
+                    </ul>
                 </Descriptions.Item>
                 <Descriptions.Item label="Release Date" span={3}>
                     {moment(releaseDate).format('DD-MMM-YYYY')}
