@@ -62,8 +62,19 @@ const UpdatePublisherModal: FC<Props> = (props) => {
     }
 
     if (getPublisherError) {
-        message.error(getPublisherError)
-        return <></>
+        return (
+            <Modal
+                title="Update Publisher Modal"
+                visible={isAppear}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Close
+                    </Button>,
+                ]}
+            >
+                <h2>{getPublisherError}</h2>
+            </Modal>
+        )
     }
 
     return (

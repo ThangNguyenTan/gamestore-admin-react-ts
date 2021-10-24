@@ -63,8 +63,19 @@ const UpdateFeatureModal: FC<Props> = (props) => {
     }
 
     if (getFeatureError) {
-        message.error(getFeatureError)
-        return <></>
+        return (
+            <Modal
+                title="Update Feature Modal"
+                visible={isAppear}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Close
+                    </Button>,
+                ]}
+            >
+                <h2>{getFeatureError}</h2>
+            </Modal>
+        )
     }
 
     return (

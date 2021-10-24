@@ -18,6 +18,12 @@ const SignInPage: FC = () => {
     )
 
     useEffect(() => {
+        if (currentUser) {
+            history.push('/home')
+        }
+    }, [currentUser])
+
+    useEffect(() => {
         if (isSubmitted) {
             if (!loading) {
                 if (error) {

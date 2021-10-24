@@ -6,18 +6,33 @@ import {
     mainGenresURL,
     singleGenreURL,
     getErrorMessageFromResponse,
+    createAuthorizedRequestHeader,
 } from '../../utils'
 import { IGenre, IGenreList } from '../../interfaces'
+import { RootState } from '../reducers/index'
 
 export const findGenres = () => {
-    return async (dispatch: Dispatch<GenreAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GenreAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GenreActionType.GET_ALL_GENRES_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IGenreList> = await axios.get(
-                `${mainGenresURL()}`
+                `${mainGenresURL()}`,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: GenreActionType.GET_ALL_GENRES_SUCCESS,
@@ -33,14 +48,27 @@ export const findGenres = () => {
 }
 
 export const getGenre = (id: string | number) => {
-    return async (dispatch: Dispatch<GenreAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GenreAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GenreActionType.GET_GENRE_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IGenre> = await axios.get(
-                `${singleGenreURL(id)}`
+                `${singleGenreURL(id)}`,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: GenreActionType.GET_GENRE_SUCCESS,
@@ -56,16 +84,29 @@ export const getGenre = (id: string | number) => {
 }
 
 export const createGenre = (genreName: string) => {
-    return async (dispatch: Dispatch<GenreAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GenreAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GenreActionType.CREATE_GENRE_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IGenre> = await axios.post(
                 `${mainGenresURL()}`,
                 {
                     genreName,
+                },
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
                 }
             )
             dispatch({
@@ -82,15 +123,28 @@ export const createGenre = (genreName: string) => {
 }
 
 export const updateGenre = (modifiedGenre: IGenre) => {
-    return async (dispatch: Dispatch<GenreAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GenreAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GenreActionType.UPDATE_GENRE_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IGenre> = await axios.put(
                 `${singleGenreURL(modifiedGenre.id!)}`,
-                modifiedGenre
+                modifiedGenre,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: GenreActionType.UPDATE_GENRE_SUCCESS,

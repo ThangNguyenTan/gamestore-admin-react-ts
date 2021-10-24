@@ -6,18 +6,33 @@ import {
     mainPublishersURL,
     singlePublisherURL,
     getErrorMessageFromResponse,
+    createAuthorizedRequestHeader,
 } from '../../utils'
 import { IPublisher, IPublisherList } from '../../interfaces'
+import { RootState } from '../reducers'
 
 export const findPublishers = () => {
-    return async (dispatch: Dispatch<PublisherAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<PublisherAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: PublisherActionType.GET_ALL_PUBLISHERS_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IPublisherList> = await axios.get(
-                `${mainPublishersURL()}`
+                `${mainPublishersURL()}`,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: PublisherActionType.GET_ALL_PUBLISHERS_SUCCESS,
@@ -33,14 +48,27 @@ export const findPublishers = () => {
 }
 
 export const getPublisher = (id: string | number) => {
-    return async (dispatch: Dispatch<PublisherAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<PublisherAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: PublisherActionType.GET_PUBLISHER_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IPublisher> = await axios.get(
-                `${singlePublisherURL(id)}`
+                `${singlePublisherURL(id)}`,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: PublisherActionType.GET_PUBLISHER_SUCCESS,
@@ -56,16 +84,29 @@ export const getPublisher = (id: string | number) => {
 }
 
 export const createPublisher = (publisherName: string) => {
-    return async (dispatch: Dispatch<PublisherAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<PublisherAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: PublisherActionType.CREATE_PUBLISHER_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IPublisher> = await axios.post(
                 `${mainPublishersURL()}`,
                 {
                     publisherName,
+                },
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
                 }
             )
             dispatch({
@@ -82,15 +123,28 @@ export const createPublisher = (publisherName: string) => {
 }
 
 export const updatePublisher = (modifiedPublisher: IPublisher) => {
-    return async (dispatch: Dispatch<PublisherAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<PublisherAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: PublisherActionType.UPDATE_PUBLISHER_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IPublisher> = await axios.put(
                 `${singlePublisherURL(modifiedPublisher.id!)}`,
-                modifiedPublisher
+                modifiedPublisher,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: PublisherActionType.UPDATE_PUBLISHER_SUCCESS,

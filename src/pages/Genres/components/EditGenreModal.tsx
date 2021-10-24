@@ -62,8 +62,19 @@ const UpdateGenreModal: FC<Props> = (props) => {
     }
 
     if (getGenreError) {
-        message.error(getGenreError)
-        return <></>
+        return (
+            <Modal
+                title="Update Genre Modal"
+                visible={isAppear}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Close
+                    </Button>,
+                ]}
+            >
+                <h2>{getGenreError}</h2>
+            </Modal>
+        )
     }
 
     return (

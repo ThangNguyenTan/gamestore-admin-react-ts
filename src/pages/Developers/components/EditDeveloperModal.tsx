@@ -62,8 +62,19 @@ const UpdateDeveloperModal: FC<Props> = (props) => {
     }
 
     if (getDeveloperError) {
-        message.error(getDeveloperError)
-        return <></>
+        return (
+            <Modal
+                title="Update Developer Modal"
+                visible={isAppear}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Close
+                    </Button>,
+                ]}
+            >
+                <h2>{getDeveloperError}</h2>
+            </Modal>
+        )
     }
 
     return (

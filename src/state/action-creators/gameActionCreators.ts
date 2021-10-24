@@ -6,6 +6,7 @@ import {
     mainGamesURL,
     singleGameURL,
     getErrorMessageFromResponse,
+    createAuthorizedRequestHeader,
 } from '../../utils'
 import {
     IFindGameItem,
@@ -13,16 +14,30 @@ import {
     ICreateGame,
     IUpdateGame,
 } from '../../interfaces'
+import { RootState } from '../reducers'
 
 export const findGames = () => {
-    return async (dispatch: Dispatch<GameAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GameAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GameActionType.GET_ALL_GAMES_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IFindGameList> = await axios.get(
-                `${mainGamesURL()}`
+                `${mainGamesURL()}`,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: GameActionType.GET_ALL_GAMES_SUCCESS,
@@ -38,14 +53,27 @@ export const findGames = () => {
 }
 
 export const getGame = (id: string | number) => {
-    return async (dispatch: Dispatch<GameAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GameAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GameActionType.GET_GAME_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IFindGameItem> = await axios.get(
-                `${singleGameURL(id)}`
+                `${singleGameURL(id)}`,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: GameActionType.GET_GAME_SUCCESS,
@@ -61,15 +89,28 @@ export const getGame = (id: string | number) => {
 }
 
 export const createGame = (newGame: ICreateGame) => {
-    return async (dispatch: Dispatch<GameAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GameAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GameActionType.CREATE_GAME_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IFindGameItem> = await axios.post(
                 `${mainGamesURL()}`,
-                newGame
+                newGame,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: GameActionType.CREATE_GAME_SUCCESS,
@@ -85,15 +126,28 @@ export const createGame = (newGame: ICreateGame) => {
 }
 
 export const updateGame = (modifiedGame: IUpdateGame) => {
-    return async (dispatch: Dispatch<GameAction>): Promise<void> => {
+    return async (
+        dispatch: Dispatch<GameAction>,
+        getState: () => RootState
+    ): Promise<void> => {
         dispatch({
             type: GameActionType.UPDATE_GAME_REQUEST,
         })
 
         try {
+            const { authReducer } = getState()
+            const { currentUser } = authReducer
+
             const res: AxiosResponse<IFindGameItem> = await axios.put(
                 `${singleGameURL(modifiedGame.id!)}`,
-                modifiedGame
+                modifiedGame,
+                {
+                    headers: {
+                        Authorization: createAuthorizedRequestHeader(
+                            currentUser
+                        ),
+                    },
+                }
             )
             dispatch({
                 type: GameActionType.UPDATE_GAME_SUCCESS,

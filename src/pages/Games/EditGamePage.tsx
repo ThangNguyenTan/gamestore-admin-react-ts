@@ -83,7 +83,6 @@ const EditGamePage: FC = () => {
     }
 
     if (gameError) {
-        message.error(gameError)
         history.push('/games')
     }
 
