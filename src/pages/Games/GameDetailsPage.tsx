@@ -1,4 +1,4 @@
-import { Descriptions, Tag } from 'antd'
+import { Descriptions } from 'antd'
 import moment from 'moment'
 import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -46,12 +46,16 @@ const GameDetailsPage: FC = () => {
             GenreInstance,
             DeveloperInstance,
             PublisherInstance,
+            gamePrice,
         } = game
 
         return (
             <Descriptions title={gameName} layout="vertical" bordered>
                 <Descriptions.Item label="Game Name" span={3}>
                     {gameName}
+                </Descriptions.Item>
+                <Descriptions.Item label="Game Price" span={3}>
+                    {gamePrice}
                 </Descriptions.Item>
                 <Descriptions.Item label="Meta Data" span={3}>
                     <ul>

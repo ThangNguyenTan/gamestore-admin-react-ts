@@ -134,10 +134,16 @@ const GamePage: FC = () => {
             title: 'Game Name',
             dataIndex: 'gameName',
             key: 'gameName',
+            ...getColumnSearchProps('gameName'),
             render: (text: string, record: IFindGameItem) => (
                 <Link to={`/games/details/${record.id}`}>{text}</Link>
             ),
-            ...getColumnSearchProps('gameName'),
+        },
+        {
+            title: 'Game Price',
+            dataIndex: 'gamePrice',
+            key: 'gamePrice',
+            render: (text: string) => <>{`$${text}`}</>,
         },
         {
             title: 'Meta',

@@ -5,6 +5,7 @@ export type IUserSignIn = {
 
 export type IGame = {
     id?: number
+    gamePrice: number
     gameName: string
     gamePoster: string
     gameTrailer: string

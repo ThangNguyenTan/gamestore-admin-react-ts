@@ -104,6 +104,23 @@ const AddGamePage: FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                    label="Game Price"
+                    name="gamePrice"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input the game price!',
+                        },
+                    ]}
+                >
+                    <Input
+                        placeholder="Game Price"
+                        type="number"
+                        disabled={loading}
+                    />
+                </Form.Item>
+
+                <Form.Item
                     label="Game Poster"
                     name="gamePoster"
                     rules={[

@@ -29,19 +29,16 @@ export const findGames = () => {
             const { authReducer } = getState()
             const { currentUser } = authReducer
 
-            const res: AxiosResponse<IFindGameList> = await axios.get(
-                `${mainGamesURL()}`,
-                {
-                    headers: {
-                        Authorization: createAuthorizedRequestHeader(
-                            currentUser
-                        ),
-                    },
-                }
-            )
+            const res: AxiosResponse<{
+                games: IFindGameList
+            }> = await axios.get(`${mainGamesURL()}`, {
+                headers: {
+                    Authorization: createAuthorizedRequestHeader(currentUser),
+                },
+            })
             dispatch({
                 type: GameActionType.GET_ALL_GAMES_SUCCESS,
-                payload: res.data,
+                payload: res.data.games,
             })
         } catch (error: any) {
             dispatch({
