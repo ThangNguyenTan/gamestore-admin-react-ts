@@ -27,3 +27,7 @@ export const singleUserURL = (id: number | string): string =>
 export const mainGamesURL = (): string => `${MAIN_API_URL}/games`
 export const singleGameURL = (id: number | string): string =>
     `${MAIN_API_URL}/games/${id}`
+
+export const mainOrdersURL = (): string => `${MAIN_API_URL}/orders`
+export const singleOrderURL = (id: number | string): string =>
+    `${MAIN_API_URL}/orders/${id}`

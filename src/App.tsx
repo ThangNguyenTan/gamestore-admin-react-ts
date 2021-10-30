@@ -15,6 +15,7 @@ import {
     GameDetailsPage,
     SignInPage,
     LogoutPage,
+    HomePage,
 } from './pages'
 import { Layout } from './components'
 
@@ -25,6 +26,7 @@ const App: React.FC = () => {
                 <Layout>
                     <Switch>
                         <Route exact path="/" component={SignInPage} />
+                        <Route exact path="/home" component={HomePage} />
                         <Route exact path="/games" component={GamePage} />
                         <Route
                             exact

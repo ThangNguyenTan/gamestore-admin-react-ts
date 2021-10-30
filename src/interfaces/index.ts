@@ -84,3 +84,13 @@ export type IPublisher = {
 }
 
 export type IPublisherList = IPublisher[]
+
+export type IOrder = {
+    id?: number
+    GameInstance: IFindGameItem
+    UserInstance: IUser
+    createdAt?: string
+    updatedAt?: string
+}
+
+export type IOrderList = IOrder[]

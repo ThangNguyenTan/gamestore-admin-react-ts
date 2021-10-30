@@ -24,6 +24,7 @@ import createGameReducer from './createGameReducer'
 import getGameReducer from './getGameReducer'
 import updateGameReducer from './updateGameReducer'
 import authReducer from './authReducer'
+import getAllOrdersReducer from './getAllOrdersReducer'
 
 const reducers = combineReducers({
     authReducer,
@@ -51,6 +52,7 @@ const reducers = combineReducers({
     createGameReducer,
     getGameReducer,
     updateGameReducer,
+    getAllOrdersReducer,
 })
 
 export default reducers
